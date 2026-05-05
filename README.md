@@ -132,7 +132,7 @@ The analytics layer calculates two DPR variants — standard pass rate and pass 
 
 ---
 
-If you'd like to discuss a project or potential collaboration — [linkedin.com/in/islamov-ildar](https://www.linkedin.com/in/islamov-ildar) · [ildarislamov72@gmail.com](mailto:ildarislamov72@gmail.com)
+If you'd like to discuss a project or potential collaboration — [LinkedIn ↗️](https://www.linkedin.com/in/islamov-ildar) · [ildarislamov72@gmail.com](mailto:ildarislamov72@gmail.com)
 
 ---
 <!-- Русский заголовок с якорем -->
@@ -268,4 +268,4 @@ If you'd like to discuss a project or potential collaboration — [linkedin.com/
 
 ---
 
-Если интересно обсудить проект или сотрудничество — [linkedin.com/in/islamov-ildar](https://www.linkedin.com/in/islamov-ildar) · [ildarislamov72@gmail.com](mailto:ildarislamov72@gmail.com)
+Если интересно обсудить проект или сотрудничество — [LinkedIn ↗️](https://www.linkedin.com/in/islamov-ildar) · [ildarislamov72@gmail.com](mailto:ildarislamov72@gmail.com)
