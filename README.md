@@ -1,3 +1,139 @@
+eng / 🇷🇺 — bilingual post — двуязычный пост
+
+# Paint Shop Quality Control System
+
+**Two shops. Eight lines. Real-time data where there was none.**
+
+---
+
+## The Problem
+
+Production was running blind.
+
+Defects were recorded on paper — on one line out of six. The other five recorded nothing. Data surfaced at the end of the shift, if at all. By the time a pattern became visible, hundreds of car bodies had already passed through.
+
+No one asked for a fix. I built one anyway.
+
+---
+
+## What Was Built
+
+A full-cycle quality monitoring platform covering two paint shops — from data entry to automated reporting. Designed, developed, and deployed by one person in one month.
+
+| | |
+|---|---|
+| Shops | 2 |
+| Lines monitored | 8 |
+| Daily users | 50+ |
+| Records per day | 350+ |
+| Records per month | 7,000+ |
+| In production | 4+ months |
+
+---
+
+## What Changed
+
+| Before | After |
+|---|---|
+| Paper records on 1 of 6 lines | Digital records on all 8 lines |
+| Data visible end of shift | Data visible within seconds |
+| Patterns identified manually | Anomalies detected in minutes |
+| Shift reports compiled by hand | Reports generated and sent automatically |
+| No history | 7,000+ records per month, fully queryable |
+| Repair prep started on arrival | Repair prep starts before the car body arrives |
+
+---
+
+## Beyond Automotive
+
+The architecture is not industry-specific.
+
+Any process with a structured flow and a quality control point can be mapped onto this system: data collection → normalization → real-time monitoring → anomaly detection → reporting. Manufacturing, logistics, laboratory, field inspection — the pattern is the same.
+
+---
+
+## Stack
+
+`Google Apps Script` `Google Sheets` `PostgreSQL` `AppSheet` `Looker Studio`  
+`JavaScript` `SQL` `IMPORTRANGE / QUERY ETL` `LockService` `ScriptProperties`
+
+---
+
+## A Note on Scope
+
+This system was not part of my job description. My role was statistics.
+
+I saw that data existed but wasn't being captured. I built the infrastructure to capture it, make it useful, and deliver it automatically to the people who needed it.
+
+That is the difference between analyzing data and building the systems that create it.
+
+---
+
+## How It Works
+
+### Layer 1 — Data Collection
+
+Operators enter defects from tablets directly on the line. Each car body gets a digital record: identifier, model, defect codes, location, timestamp, status.
+
+Free-text input is normalized automatically — `2 3`, `2,3`, `2/3` all become `2(3)`. A car body identifier typed as `125` becomes `BD125`. The data is always clean before it reaches analytics.
+
+Concurrent access from multiple tablets is handled through a write-ahead log via `ScriptProperties` + `LockService`. No data loss under race conditions.
+
+Six lines, four files. Each file reflects exactly its line — no universal compromises, no redundant columns.
+
+### Layer 2 — Analytics
+
+Two independent levels for two different questions.
+
+**Real time** — what is happening right now. Dashboards update automatically within seconds of data entry. No manual action required.
+
+- 12 dashboards · 56 charts
+- DPU and DPR by day
+- Top defects and elements — today
+- Left vs. right side comparison by model
+- Defect symmetry per model — systemic vs. local
+
+**On demand** — what happened over a period. Select a line, set dates, get a full report.
+
+- Summary metrics: units, defects, DPU, DPR
+- Breakdown by defect type, body element, and car model
+- Left/right side delta — highlights directional patterns
+- Conditional formatting: problem areas visible without reading numbers
+
+### Layer 3 — Alert System
+
+The detector runs every 5 minutes. It looks at the last 10 car bodies with a confirmed status — a sliding window. If the same defect appears on the same element in 7 out of 10 bodies, a threshold is breached.
+
+Alerts are batched into a digest sent every 2 hours — not one email per trigger. Each defect-element pair has a 2-hour cooldown to prevent duplicates. The result: one structured email with everything that matters, no noise.
+
+The end-of-shift report is generated and sent automatically — 18 minutes before the shift ends. Management sees DPU, DPR, the repair list, and defect breakdown before the line stops. No one compiles it manually.
+
+Both systems are fully configurable from a spreadsheet. Add a recipient, exclude a noisy defect, assign responsibility for a specific defect type — no code changes required.
+
+### Layer 4 — Repair Flow
+
+When a car body is sent to the repair chamber, it carries a compact defect cipher — letters for body elements, numbers for defect types. `A1,2,B3` means: element A has defects 1 and 2, element B has defect 3.
+
+Repair workers read the cipher before the car body arrives. Preparation starts in advance. After repair, they log what was done, time spent, and exit status. The data feeds back into the analytics layer automatically.
+
+---
+
+## Second Shop — Own Initiative
+
+The plastic parts shop ran on Excel with no automation.
+
+I wrote to management, scheduled a meeting, scoped the requirements, and built the system independently. Different shop, different people, different process — different design decisions.
+
+The plastic shop uses a different input model: one row per defect per part, not per car body. Dynamic dropdowns generated from named ranges — the model selection narrows the color list, which narrows the parts list. Operators never see irrelevant options.
+
+The analytics layer calculates two DPR variants — standard pass rate and pass rate including line-side corrections. Sequential grouping logic handles re-entries of the same car body as distinct visits, not duplicates.
+
+---
+
+If you'd like to discuss a project or potential collaboration — [www.linkedin.com/in/islamov-ildar](www.linkedin.com/in/islamov-ildar) · [ildarislamov72@gmail.com](mailto:ildarislamov72@gmail.com)
+
+---
+
 # Paint Shop Quality Control System
 
 **Два цеха. Восемь линий. Данные в реальном времени там, где их не было.**
@@ -128,4 +264,4 @@
 
 ---
 
-Если интересно обсудить проект или сотрудничество — [linkedin.com/in/...](https://linkedin.com/in/...) · [your@email.com](mailto:your@email.com)
+Если интересно обсудить проект или сотрудничество — [www.linkedin.com/in/islamov-ildar](www.linkedin.com/in/islamov-ildar) · [ildarislamov72@gmail.com](mailto:ildarislamov72@gmail.com)
