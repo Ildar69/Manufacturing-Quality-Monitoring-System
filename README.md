@@ -1,7 +1,8 @@
 eng / ru — bilingual post — двуязычный пост 
 <!-- Английский заголовок с якорем -->
-<a name="eng_version"></a>
-# Paint Shop Quality Control System(eng) [Читать на русском](#paint-shop-quality-control-systemru)
+<a name="eng"></a>
+# Paint Shop Quality Control System (ENG)
+[Читать на русском](#ru)
 
 **Two shops. Eight lines. Real-time data where there was none.**
 
@@ -135,8 +136,9 @@ If you'd like to discuss a project or potential collaboration — [linkedin.com/
 
 ---
 <!-- Русский заголовок с якорем -->
-<a name="ru_version"></a>
-# Paint Shop Quality Control System(ru) [Read in English](#paint-shop-quality-control-systemeng)
+<a name="ru"></a>
+# Система контроля качества окрасочного цеха (RU)
+[Read in English](#eng)
 
 **Два цеха. Восемь линий. Данные в реальном времени там, где их не было.**
 
