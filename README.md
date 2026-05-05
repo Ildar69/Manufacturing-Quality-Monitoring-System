@@ -1,4 +1,4 @@
-eng / 🇷🇺 — bilingual post — двуязычный пост
+eng / ru — bilingual post — двуязычный пост
 
 # Paint Shop Quality Control System
 
