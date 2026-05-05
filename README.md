@@ -1,6 +1,6 @@
-eng / ru — bilingual post — двуязычный пост
+eng / ru — bilingual post — двуязычный пост 
 
-# Paint Shop Quality Control System
+# Paint Shop Quality Control System [🇷🇺 Читать на русском](#paint-shop-quality-control-system-1)
 
 **Two shops. Eight lines. Real-time data where there was none.**
 
@@ -130,11 +130,11 @@ The analytics layer calculates two DPR variants — standard pass rate and pass 
 
 ---
 
-If you'd like to discuss a project or potential collaboration — [www.linkedin.com/in/islamov-ildar](www.linkedin.com/in/islamov-ildar) · [ildarislamov72@gmail.com](mailto:ildarislamov72@gmail.com)
+If you'd like to discuss a project or potential collaboration — [linkedin.com/in/islamov-ildar](https://www.linkedin.com/in/islamov-ildar) · [ildarislamov72@gmail.com](mailto:ildarislamov72@gmail.com)
 
 ---
 
-# Paint Shop Quality Control System
+# Paint Shop Quality Control System [🇬🇧 Read in English](#paint-shop-quality-control-system)
 
 **Два цеха. Восемь линий. Данные в реальном времени там, где их не было.**
 
@@ -264,4 +264,4 @@ If you'd like to discuss a project or potential collaboration — [www.linkedin.
 
 ---
 
-Если интересно обсудить проект или сотрудничество — [www.linkedin.com/in/islamov-ildar](www.linkedin.com/in/islamov-ildar) · [ildarislamov72@gmail.com](mailto:ildarislamov72@gmail.com)
+Если интересно обсудить проект или сотрудничество — [linkedin.com/in/islamov-ildar](https://www.linkedin.com/in/islamov-ildar) · [ildarislamov72@gmail.com](mailto:ildarislamov72@gmail.com)
