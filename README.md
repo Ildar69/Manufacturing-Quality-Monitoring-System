@@ -1,175 +1,131 @@
-# Manufacturing Quality Monitoring System
-### Real-time defect tracking across 2 workshops · 8 production lines · 7,000+ records/month
+# Paint Shop Quality Control System
+
+**Два цеха. Восемь линий. Данные в реальном времени там, где их не было.**
 
 ---
 
-## Overview
+## Проблема
 
-A production-grade quality monitoring system built and deployed at an automotive manufacturing plant.
-Covers the full cycle: data collection on the shop floor → real-time analytics → automated alerts → management reporting.
+Производство работало вслепую.
 
-Currently in active use by **50+ people daily** — controllers, line supervisors, engineers, and plant management.
+Дефекты фиксировались на бумаге — и только на одной линии из шести. Остальные пять не записывали ничего. Данные появлялись в конце смены, если вообще появлялись. К тому моменту, когда паттерн становился виден, через линию уже прошли сотни кузовов.
 
----
-
-## The Problem
-
-Before this system, defect tracking looked like this:
-
-- One production line. One workshop. Paper forms.
-- Each car body got a printed sheet — workers filled it in by hand
-- No real-time visibility — issues surfaced at the end of a shift, or not at all
-- No structured analytics — no trends, no patterns, no DPU/DPR metrics
-- Zero cross-line or cross-workshop comparability
-
-The bottleneck wasn't the number of defects. It was reaction speed and visibility.
+Никто не просил это исправить. Я сделал это сам.
 
 ---
 
-## The Solution
+## Что было сделано
 
-A distributed quality monitoring system, built from scratch:
+Полноцикловая платформа контроля качества для двух окрасочных цехов — от ввода данных до автоматической отчётности. Спроектировано, разработано и запущено одним человеком за один месяц.
 
-| What | Details |
-|------|---------|
-| Coverage | 2 workshops, 8 production lines |
-| Volume | 7,000+ records/month, 350+ records/day |
-| Users | 50+ daily (controllers, managers, engineers) |
-| Data entry | Tablets on the production floor |
-| Analytics | Real-time dashboards + on-demand deep dive |
-| Alerts | Automated email notifications |
-| Backend | PostgreSQL (Neon), normalized schema |
-| Automation | Google Apps Script (1,000+ lines of JS) |
+| | |
+|---|---|
+| Цехов | 2 |
+| Линий под мониторингом | 8 |
+| Ежедневных пользователей | 50+ |
+| Записей в день | 350+ |
+| Записей в месяц | 7 000+ |
+| В продакшне | 4+ месяца |
 
 ---
 
-## Impact
+## Что изменилось
 
-- **Reaction time**: from end-of-shift discovery → near real-time alerts
-- **Coverage**: from 1 line → 8 lines across 2 workshops
-- **Visibility**: management sees live data, not yesterday's paper
-- **Adoption**: the system became part of the workflow — not a side tool
-- **Meetings**: weekly reviews are now data-driven, not memory-driven
-
----
-
-## Architecture
-
-```
-[Tablet on line] → [Google Sheets — data entry]
-                          ↓
-              [Google Apps Script — automation]
-                    ↙           ↘
-        [Analytics layer]    [Alert engine]
-         (Sheets + Looker)    (Email triggers)
-                    ↘           ↙
-              [Management reporting]
-
-[Mobile app] ↔ [PostgreSQL / Neon — normalized schema]
-                  (controllers · managers · post-level access)
-```
+| До | После |
+|---|---|
+| Бумажные записи на 1 из 6 линий | Цифровые записи на всех 8 линиях |
+| Данные видны в конце смены | Данные видны в течение секунд |
+| Паттерны выявляются вручную | Аномалии обнаруживаются за минуты |
+| Отчёты по смене составляются вручную | Отчёты формируются и отправляются автоматически |
+| Нет истории | 7 000+ записей в месяц, полностью доступны для анализа |
+| Подготовка к ремонту начинается по прибытии кузова | Подготовка начинается до прибытия кузова |
 
 ---
 
-## Core Modules
+## За пределами автопрома
 
-### 1. Data Collection
-Controllers enter defect data from tablets directly on the production line.
-Each record: VIN, body ID (SKID), model, color, hatch presence — one row per car body.
-Input is normalized automatically on entry (SKID format standardization via Apps Script).
+Архитектура не привязана к отрасли.
 
-### 2. Analytics — Real-Time
-Live dashboards show current shift status across all lines.
-Key metrics: DPU (Defects Per Unit), DPR (Defects Per Record), hourly distribution, per-model breakdown.
-Available in two modes: automated view and manual drill-down in two clicks.
-
-### 3. Alert System
-Anomaly detection engine built on a sliding-window algorithm with per-defect cooldown and subscription tiers.
-When a threshold is breached — an alert fires within minutes, not at end of shift.
-Replaces manual monitoring. Handles concurrent access via LockService + write-ahead log (ScriptProperties).
-
-### 4. ETL & Data Sync
-Cross-spreadsheet ETL with deduplication logic.
-Hourly archive sync across 7 source files, 8 production lines.
-Prevents data corruption under simultaneous tablet usage.
-
-### 5. Mobile Application
-Built for final inspection and loading posts.
-Features: body part selection, defect registration, repair workflow (OK / Repair / Rework), status tracking.
-Role-based access: controller vs manager, with post-level data isolation.
-Backend: PostgreSQL (Neon) — 10-table normalized schema covering users, sessions, defects, repair logs, lookup dictionaries.
+Любой процесс со структурированным потоком и точкой контроля качества можно отобразить на эту систему: сбор данных → нормализация → мониторинг в реальном времени → обнаружение аномалий → отчётность. Производство, логистика, лаборатория, полевые инспекции — паттерн один и тот же.
 
 ---
 
-## Tech Stack
+## Стек
 
-| Layer | Tools |
-|-------|-------|
-| Data entry | Google Sheets + Apps Script |
-| Automation | Google Apps Script (JavaScript) |
-| Database | PostgreSQL (Neon) |
-| Mobile app | AppSheet |
-| Analytics | Looker Studio |
-| Alerting | Apps Script + Gmail API |
+`Google Apps Script` `Google Sheets` `PostgreSQL` `AppSheet` `Looker Studio`  
+`JavaScript` `SQL` `IMPORTRANGE / QUERY ETL` `LockService` `ScriptProperties`
 
 ---
 
-## My Role
+## О масштабе работы
 
-This system was designed and built independently, end to end:
+Эта система не входила в мои должностные обязанности. Моя роль была — статистика.
 
-- Designed the full architecture from zero
-- Built the data model (relational schema, 10+ tables, constraints, normalization)
-- Wrote all automation logic (data validation, ETL, deduplication, alerting)
-- Implemented concurrent-access handling for simultaneous multi-tablet usage
-- Deployed across two workshops, integrated into existing workflows
-- Trained operators on tablet-based data entry on the production floor
-- Participated in defect review sessions with engineers and management
-- Deliver regular reporting to multiple organizational levels — from shift supervisors to plant leadership
+Я увидел, что данные существуют, но не фиксируются. Я построил инфраструктуру, чтобы их захватить, сделать полезными и автоматически доставлять людям, которым они нужны.
+
+Вот в чём разница между анализом данных и построением систем, которые их создают.
 
 ---
 
-## Lessons Learned
+## Как это работает
 
-- **Reaction speed beats data volume.** The real pain wasn't lack of data — it was delay. Real-time alerting changed the game more than any dashboard.
-- **Input simplicity drives adoption.** If entry takes more than 30 seconds, people find workarounds. The tablet UX had to be frictionless.
-- **Concurrent access is underestimated.** Multi-user writes to shared sheets at scale require explicit locking logic — this was one of the hardest parts.
-- **Real users break things unexpectedly.** Production floor conditions are different from a dev environment. Robustness comes from watching real usage, not testing in isolation.
-- **AppSheet has UX limits.** For complex data entry flows, AppSheet's constraints became visible. The mobile app is pending UX refinement before full production rollout.
+### Слой 1 — Сбор данных
+
+Операторы вводят дефекты с планшетов прямо на линии. Каждый кузов получает цифровую запись: идентификатор, модель, коды дефектов, расположение, временная метка, статус.
+
+Свободный ввод нормализуется автоматически — `2 3`, `2,3`, `2/3` — всё становится `2(3)`. Идентификатор кузова, введённый как `125`, становится `BD125`. Данные всегда чистые до того, как попадают в аналитику.
+
+Одновременный доступ с нескольких планшетов обрабатывается через журнал записей с упреждением через `ScriptProperties` + `LockService`. Потери данных при конкурентном доступе исключены.
+
+Шесть линий, четыре файла. Каждый файл отражает ровно свою линию — никаких универсальных компромиссов, никаких лишних столбцов.
+
+### Слой 2 — Аналитика
+
+Два независимых уровня для двух разных вопросов.
+
+**Реальное время** — что происходит прямо сейчас. Дашборды обновляются автоматически в течение секунд после ввода данных. Никаких ручных действий.
+
+- 12 дашбордов · 56 графиков
+- DPU и DPR по дням
+- Топ дефектов и элементов — сегодня
+- Сравнение левой и правой стороны по моделям
+- Симметрия дефектов по модели — системные vs. локальные
+
+**По запросу** — что происходило за период. Выбираешь линию, задаёшь даты, получаешь полный отчёт.
+
+- Сводные метрики: единицы, дефекты, DPU, DPR
+- Разбивка по типу дефекта, элементу кузова и модели автомобиля
+- Дельта левой/правой стороны — выделяет направленные паттерны
+- Условное форматирование: проблемные зоны видны без чтения цифр
+
+### Слой 3 — Система алертов
+
+Детектор запускается каждые 5 минут. Он смотрит на последние 10 кузовов с подтверждённым статусом — скользящее окно. Если один и тот же дефект появляется на одном и том же элементе в 7 из 10 кузовов — порог пробит.
+
+Алерты группируются в дайджест и отправляются каждые 2 часа — не одно письмо на каждое срабатывание. Каждая пара «дефект–элемент» имеет 2-часовой кулдаун для предотвращения дублей. Результат: одно структурированное письмо со всем важным, без шума.
+
+Отчёт по концу смены формируется и отправляется автоматически — за 18 минут до окончания смены. Руководство видит DPU, DPR, список ремонтов и разбивку дефектов до остановки линии. Никто не составляет это вручную.
+
+Обе системы полностью настраиваются из таблицы. Добавить получателя, исключить шумный дефект, назначить ответственного за конкретный тип дефекта — изменений в коде не требуется.
+
+### Слой 4 — Ремонтный поток
+
+Когда кузов отправляется в ремонтную камеру, он несёт компактный шифр дефектов — буквы для элементов кузова, цифры для типов дефектов. `A1,2,B3` означает: элемент A имеет дефекты 1 и 2, элемент B — дефект 3.
+
+Ремонтники читают шифр до прибытия кузова. Подготовка начинается заранее. После ремонта они фиксируют выполненные работы, затраченное время и статус выхода. Данные автоматически возвращаются в аналитический слой.
 
 ---
 
-## Screenshots
+## Второй цех — собственная инициатива
 
-> *Coming soon — interface screenshots with anonymized production data*
+Цех пластиковых деталей работал в Excel без какой-либо автоматизации.
 
-| View | Description |
-|------|------------|
-| 📊 | Real-time dashboard — shift overview |
-| 📋 | Data entry form — controller view |
-| 🔔 | Alert email — anomaly notification |
-| 📱 | Mobile app — defect registration flow |
-| 🗄️ | Database schema — ERD diagram |
+Я написал руководству, назначил встречу, собрал требования и построил систему самостоятельно. Другой цех, другие люди, другой процесс — другие проектные решения.
+
+В цехе пластика используется другая модель ввода: одна строка на дефект на деталь, а не на кузов. Динамические выпадающие списки из именованных диапазонов — выбор модели сужает список цветов, который сужает список деталей. Операторы никогда не видят нерелевантные варианты.
+
+Аналитический слой считает два варианта DPR — стандартный процент годных и процент годных с учётом исправлений на линии. Логика последовательной группировки обрабатывает повторные въезды одного кузова как отдельные визиты, а не дубликаты.
 
 ---
 
-## Status
-
-| Component | Status |
-|-----------|--------|
-| Data collection (8 lines) | ✅ Production |
-| Real-time analytics | ✅ Production |
-| Alert system | ✅ Production |
-| Shift reporting | ✅ Production |
-| Mobile app | 🔄 Pilot — UX refinement in progress |
-
----
-
-## Note
-
-Full implementation is not public. Code snippets shared here are for demonstration purposes only.  
-Available for discussion — feel free to reach out.
-
----
-
-*Built by [Ildar Islamov](https://linkedin.com/in/islamov-ildar) · Almaty, Kazakhstan*
+Если интересно обсудить проект или сотрудничество — [linkedin.com/in/...](https://linkedin.com/in/...) · [your@email.com](mailto:your@email.com)
