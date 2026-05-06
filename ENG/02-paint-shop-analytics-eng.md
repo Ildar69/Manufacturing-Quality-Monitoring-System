@@ -190,4 +190,5 @@ The combination of both levels gives the full picture — operational and histor
 
 ---
 
-*Next: alert system — automated anomaly notifications and end-of-shift summary reports.*
+*Next: alert system — [automated anomaly notifications and end-of-shift summary reports](03-alert-system-eng.md).*
+
