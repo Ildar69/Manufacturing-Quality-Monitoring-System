@@ -149,7 +149,3 @@ More detail in the mobile app section.
 | Analytics | Centralised, shared | Two separate files per line |
 
 Two systems. One person. Different problems — different solutions.
-
----
-
-*Next: README — the case that brings everything together.*
