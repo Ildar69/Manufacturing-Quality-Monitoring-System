@@ -85,6 +85,7 @@ Free-text input is normalized automatically — `2 3`, `2,3`, `2/3` all become `
 Concurrent access from multiple tablets is handled through a write-ahead log via `ScriptProperties` + `LockService`. No data loss under race conditions.
 
 Six lines, four files. Each file reflects exactly its line — no universal compromises, no redundant columns.
+*[Read more about Data Collection →](./ENG/01-paint-shop-data-collection-eng.md).*
 
 ### Layer 2 — Analytics
 
@@ -113,6 +114,7 @@ Two independent levels for two different questions.
 
 ![On-demand report — metrics and breakdown](./images/Analytics4.webp)
 <sub>Report output: summary metrics, defect breakdown by element and type, left/right delta. All data shown is anonymised and does not reflect real production.</sub>
+*[Read more about Analytics →](./ENG/02-paint-shop-analytics-eng.md).*
 
 ### Layer 3 — Alert System
 
@@ -135,6 +137,7 @@ Both systems are fully configurable from a spreadsheet. Add a recipient, exclude
 ![Alert configuration table](./images/Mail7.webp)
 
 <sub>Configuration table for the alert and reporting system. Recipients, thresholds, and responsibilities are managed here — no code changes required.</sub>
+*[Read more about Alert System →](./ENG/03-alert-system-eng.md).*
 
 ### Layer 4 — Repair Flow
 
@@ -157,8 +160,7 @@ The plastic shop uses a different input model: one row per defect per part, not 
 <sub>Dynamic dropdown: model selection narrows the parts list in real time. Interface is live; data shown is anonymised.</sub>
 
 The analytics layer calculates two DPR variants — standard pass rate and pass rate including line-side corrections. Sequential grouping logic handles re-entries of the same car body as distinct visits, not duplicates.
-
----
+*[Read more about Second Shop →](./ENG/05-plastic-shop-eng.md).*
 
 ## Mobile App
 *Two backend variants · not in production · an honest account*
@@ -194,6 +196,7 @@ Next version — a full web app with no no-code constraints: HTML, CSS, JavaScri
 | Next version (web) | Planned |
 
 *Frozen — not abandoned.*
+*[Read more about Second Shop →](./ENG/04-mobile-app-eng.md).*
 
 ---
 
