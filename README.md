@@ -105,6 +105,7 @@ Two independent levels for two different questions.
 **On demand** — what happened over a period. Select a line, set dates, get a full report.
 
 ![On-demand report — line and date selection](./images/Analytics3.webp)
+
 <sub>Report control panel: select line, set date range, run report. Interface is live; data shown is anonymised.</sub>
 
 - Summary metrics: units, defects, DPU, DPR
@@ -113,6 +114,7 @@ Two independent levels for two different questions.
 - Conditional formatting: problem areas visible without reading numbers
 
 ![On-demand report — metrics and breakdown](./images/Analytics4.webp)
+
 <sub>Report output: summary metrics, defect breakdown by element and type, left/right delta. All data shown is anonymised and does not reflect real production.</sub>
 *[Read more about Analytics →](./ENG/02-paint-shop-analytics-eng.md).*
 
