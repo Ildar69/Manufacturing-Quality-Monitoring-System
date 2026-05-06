@@ -151,6 +151,3 @@ function setupRowValidation(ss, sheet, row, model) {
 Две системы. Одна голова. Разные задачи — разные решения.
 
 \---
-
-*Следующий блок: [README.](README.md).*
-
