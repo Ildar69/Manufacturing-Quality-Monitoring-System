@@ -191,4 +191,4 @@ All triggers are time-based — run on schedule. No dependency on user actions.
 
 ---
 
-*Next: mobile app — PostgreSQL, AppSheet, the freeze, and what comes next.*
+*Next: mobile app — [PostgreSQL, AppSheet, the freeze, and what comes next](04-mobile-app-eng.md).*
