@@ -216,5 +216,5 @@ Built by one person in one month. In production for 4+ months. Deployed into a l
 
 ---
 
-*Next: analytics — [real-time dashboards, on-demand deep analysis, alert system](02-paint-shop-analytics-eng.md).*
+*Next: analytics — [real-time dashboards, on-demand deep analysis](02-paint-shop-analytics-eng.md).*
 
