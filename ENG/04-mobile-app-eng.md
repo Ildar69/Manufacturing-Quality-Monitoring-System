@@ -74,4 +74,5 @@ The app is frozen — not abandoned. The organisational conditions for its rollo
 
 ---
 
-*Next: plastic parts paint shop — the second system, different logic, entirely self-initiated.*
+*Next: [plastic parts paint shop — the second system, different logic, entirely self-initiated](05-plastic-shop-eng.md).*
+
