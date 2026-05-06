@@ -119,6 +119,7 @@ Two independent levels for two different questions.
 The detector runs every 5 minutes. It looks at the last 10 car bodies with a confirmed status — a sliding window. If the same defect appears on the same element in 7 out of 10 bodies, a threshold is breached.
 
 ![Alert digest](./images/Mail9.png)
+
 <sub>Alert digest sent every 2 hours. Real email interface; all data shown is anonymised and does not reflect real production.</sub>
 
 Alerts are batched into a digest sent every 2 hours — not one email per trigger. Each defect-element pair has a 2-hour cooldown to prevent duplicates. The result: one structured email with everything that matters, no noise.
@@ -126,11 +127,13 @@ Alerts are batched into a digest sent every 2 hours — not one email per trigge
 The end-of-shift report is generated and sent automatically — 18 minutes before the shift ends. Management sees DPU, DPR, the repair list, and defect breakdown before the line stops. No one compiles it manually.
 
 ![End-of-shift report](./images/Mail8.png)
+
 <sub>Automatic end-of-shift report with DPU, DPR, repair list, and defect breakdown. All data shown is anonymised and does not reflect real production.</sub>
 
 Both systems are fully configurable from a spreadsheet. Add a recipient, exclude a noisy defect, assign responsibility for a specific defect type — no code changes required.
 
 ![Alert configuration table](./images/Mail7.webp)
+
 <sub>Configuration table for the alert and reporting system. Recipients, thresholds, and responsibilities are managed here — no code changes required.</sub>
 
 ### Layer 4 — Repair Flow
@@ -150,6 +153,7 @@ I wrote to management, scheduled a meeting, scoped the requirements, and built t
 The plastic shop uses a different input model: one row per defect per part, not per car body. Dynamic dropdowns generated from named ranges — the model selection narrows the color list, which narrows the parts list. Operators never see irrelevant options.
 
 ![Dynamic dropdown — plastic shop input](./images/Entering_information5.webp)
+
 <sub>Dynamic dropdown: model selection narrows the parts list in real time. Interface is live; data shown is anonymised.</sub>
 
 The analytics layer calculates two DPR variants — standard pass rate and pass rate including line-side corrections. Sequential grouping logic handles re-entries of the same car body as distinct visits, not duplicates.
@@ -168,6 +172,7 @@ Built twice with different backends:
 - **AppSheet + PostgreSQL (NeonDB)** — normalised schema, Looker Studio connected directly to the database
 
 ![AppSheet app — side menu](./images/App6.webp)
+
 <sub>AppSheet mobile app: navigation menu with active records, archive, and repair sections. Live interface.</sub>
 
 Each user sees only their own data — profile, role, shift, and line are locked at login. An inspector on post 3 cannot see data from post 1.
