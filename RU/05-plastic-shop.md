@@ -152,5 +152,5 @@ function setupRowValidation(ss, sheet, row, model) {
 
 \---
 
-*Следующий шаг: README — продающий кейс который объединяет всё.*
+*Следующий блок: [README.](README.md).*
 
